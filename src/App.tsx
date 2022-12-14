@@ -17,7 +17,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Вставай!
+          Учение свет!
         </a>
       </header>
     </div>
