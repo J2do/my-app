@@ -1,8 +1,9 @@
 import React from "react";
-import { Counter } from "./components/Counter/Counter";
 import { CounterFC } from "./components/CounterFC/CounterFC";
 
 const App: React.FC = () => {
+  const arr = [1, 2, 31, 4, 5, 65];
+
   return (
     <div
       style={{
@@ -13,8 +14,9 @@ const App: React.FC = () => {
         fontSize: "40px",
       }}
     >
-      <Counter initialCount={15} />
-      <CounterFC initialCount={15} />
+      {arr.map((count) => (
+        <CounterFC initialCount={count} />
+      ))}
     </div>
   );
 };
