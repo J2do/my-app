@@ -1,22 +1,12 @@
 import React from "react";
-import { CounterFC } from "./components/CounterFC/CounterFC";
+import Card, { CardVariant } from "./components/card";
 
-const App: React.FC = () => {
-  const arr = [1, 2, 31, 4, 5, 65];
-
+const App = () => {
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "500px",
-        fontSize: "40px",
-      }}
-    >
-      {arr.map((count) => (
-        <CounterFC initialCount={count} />
-      ))}
+    <div>
+      <Card variant={CardVariant.primary} width="200px" height="200px">
+        <button>кнопка</button>
+      </Card>
     </div>
   );
 };
