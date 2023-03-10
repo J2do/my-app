@@ -3,6 +3,7 @@ import PostList from "./components/PostList";
 import "./styles/App.css";
 import PostForm from "./components/PostForm";
 import PostFilter from "./components/PostFilter";
+import MyModal from "./components/UI/window/MyModal";
 
 function App() {
   const [posts, setPosts] = useState([
@@ -16,7 +17,7 @@ function App() {
   const sortedPosts = useMemo(() => {
     console.log("work");
     if (filter.sort) {
-      return [...posts].sort((a, b, c) =>
+      return [...posts].sort((a, b) =>
         a[filter.sort].localeCompare(b[filter.sort])
       );
     }
@@ -39,6 +40,7 @@ function App() {
 
   return (
     <div className="App">
+      <MyModal></MyModal>
       <PostForm create={createPost} />
       <hr style={{ margin: "15px 0" }} />
       <PostFilter filter={filter} setFilter={setFilter} />
