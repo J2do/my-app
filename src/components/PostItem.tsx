@@ -1,7 +1,15 @@
 import React from "react";
 import MyButton from "./UI/button/MyButton";
 
-const PostItem = (props) => {
+interface ItemProps {
+  props?: any;
+  remove: any;
+  number: number;
+  post: any;
+  key: number;
+}
+
+const PostItem: React.FC<ItemProps> = ({ props }) => {
   return (
     <div className="post">
       <div className="post_content">
