@@ -2,17 +2,25 @@ import React from "react";
 import MyInput from "./UI/input/MyInput";
 import MySelect from "./UI/select/MySelect";
 
-const PostFilter = ({ filter, setFilter }) => {
+interface FilterProps {
+  filter: any;
+  setFilter: any;
+}
+
+const PostFilter: React.FC<FilterProps> = ({ filter, setFilter }) => {
   return (
     <div>
       <MyInput
         value={filter.query}
-        onChange={(e) => setFilter({ ...filter, query: e.target.value })}
+        onChange={({ e }: any) =>
+          setFilter({ ...filter, query: e.target.value })
+        }
         placeholder="Search..."
+        type={undefined}
       />
       <MySelect
         value={filter.sort}
-        onChange={(selectedSort) =>
+        onChange={({ selectedSort }: any) =>
           setFilter({ ...filter, sort: selectedSort })
         }
         defaultValue="sort"

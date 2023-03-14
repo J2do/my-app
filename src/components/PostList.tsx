@@ -2,11 +2,11 @@ import React from "react";
 import PostItem from "./PostItem";
 
 interface ListProps {
-  posts: any;
-  title: string;
-  remove: any;
-  post: any;
-  index: any;
+  posts?: any;
+  title?: string;
+  remove?: any;
+  post?: any;
+  index?: any;
 }
 const PostList: React.FC<ListProps> = ({ posts, title, remove }) => {
   if (!posts.length) {

@@ -2,10 +2,14 @@ import React, { useState } from "react";
 import MyInput from "./UI/input/MyInput";
 import MyButton from "./UI/button/MyButton";
 
-const PostForm = ({ create }) => {
+interface FormProps {
+  create: any;
+}
+
+const PostForm: React.FC<FormProps> = ({ create }) => {
   const [post, setPost] = useState({ title: "", body: "" });
 
-  const addNewPost = (e) => {
+  const addNewPost = ({ e }: any) => {
     e.preventDefault();
     const newPost = {
       ...post,
@@ -18,13 +22,13 @@ const PostForm = ({ create }) => {
     <form>
       <MyInput
         value={post.title}
-        onChange={(e) => setPost({ ...post, title: e.target.value })}
+        onChange={({ e }: any) => setPost({ ...post, title: e.target.value })}
         type="text"
         placeholder="poster"
       />
       <MyInput
         value={post.body}
-        onChange={(e) => setPost({ ...post, body: e.target.value })}
+        onChange={({ e }: any) => setPost({ ...post, body: e.target.value })}
         type="text"
         placeholder="roadster"
       />
