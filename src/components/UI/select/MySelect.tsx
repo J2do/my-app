@@ -1,10 +1,15 @@
 import React from "react";
 
+interface IOption {
+  value: string;
+  name: string;
+}
+
 interface SelectProps {
-  options: any;
-  defaultValue: any;
-  value: any;
-  onChange: any;
+  options: IOption[];
+  defaultValue: string;
+  value?: string;
+  onChange(value: string): void;
 }
 
 const MySelect: React.FC<SelectProps> = ({
@@ -18,7 +23,7 @@ const MySelect: React.FC<SelectProps> = ({
       <option disabled value="">
         {defaultValue}
       </option>
-      {options.map(({ option }: any) => (
+      {options.map((option) => (
         <option key={option.value} value={option.value}>
           {option.name}
         </option>

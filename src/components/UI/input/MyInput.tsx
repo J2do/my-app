@@ -8,8 +8,8 @@ interface InputProps {
   placeholder: any;
 }
 
-const MyInput: React.FC<InputProps> = (props, ref) => {
+const MyInput = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   return <input ref={ref} className={classes.myInt} {...props} />;
-};
+});
 
 export default MyInput;

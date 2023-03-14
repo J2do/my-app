@@ -1,10 +1,11 @@
 import React from "react";
+import { IFilter, IPost } from "../App";
 import MyInput from "./UI/input/MyInput";
 import MySelect from "./UI/select/MySelect";
 
 interface FilterProps {
-  filter: any;
-  setFilter: any;
+  filter: IFilter;
+  setFilter(filter: IFilter): void;
 }
 
 const PostFilter: React.FC<FilterProps> = ({ filter, setFilter }) => {
@@ -12,16 +13,17 @@ const PostFilter: React.FC<FilterProps> = ({ filter, setFilter }) => {
     <div>
       <MyInput
         value={filter.query}
-        onChange={({ e }: any) =>
-          setFilter({ ...filter, query: e.target.value })
+        onChange={(event: any) =>
+          setFilter({ ...filter, query: event.target.value })
         }
         placeholder="Search..."
         type={undefined}
       />
       <MySelect
-        value={filter.sort}
-        onChange={({ selectedSort }: any) =>
-          setFilter({ ...filter, sort: selectedSort })
+        value={filter.sortKey}
+        onChange={
+          (selectedSort) =>
+            setFilter({ ...filter, sortKey: selectedSort as keyof IPost }) // todo: сделать, чтобы выводило тип selectedSort
         }
         defaultValue="sort"
         options={[

@@ -5,24 +5,35 @@ import PostForm from "./components/PostForm";
 import PostFilter from "./components/PostFilter";
 import MyModal from "./components/UI/window/MyModal";
 
+export interface IPost {
+  id: number;
+  title: string;
+  body: string;
+}
+
+export interface IFilter {
+  sortKey?: keyof IPost;
+  query: string;
+}
+
 function App() {
-  const [posts, setPosts] = useState([
+  const [posts, setPosts] = useState<IPost[]>([
     { id: 1, title: "aaa", body: "zzz" },
     { id: 2, title: "ddd", body: "yyy" },
     { id: 3, title: "vvv", body: "www" },
   ]);
 
-  const [filter, setFilter] = useState({ sort: "", query: "" });
+  const [filter, setFilter] = useState<IFilter>({ query: "" });
+  const { sortKey } = filter;
 
   const sortedPosts = useMemo(() => {
-    console.log("work");
-    if (filter.sort) {
-      return [...posts].sort(({ a, b }: any) =>
-        a[filter.sort].localeCompare(b[filter.sort])
+    if (sortKey) {
+      return [...posts].sort((a, b) =>
+        String(a[sortKey]).localeCompare(String(b[sortKey]))
       );
     }
     return posts;
-  }, [filter.sort, posts]);
+  }, [sortKey, posts]);
 
   const sortedAndSearchPosts = useMemo(() => {
     return sortedPosts.filter((post) =>
@@ -30,17 +41,17 @@ function App() {
     );
   }, [filter.query, sortedPosts]);
 
-  const createPost = ({ newPost }: any) => {
+  const createPost = (newPost: IPost) => {
     setPosts([...posts, newPost]);
   };
 
-  const removePost = ({ post }: any) => {
+  const removePost = (post: IPost) => {
     setPosts(posts.filter((p) => p.id !== post.id));
   };
 
   return (
     <div className="App">
-      <MyModal children={undefined}></MyModal>
+      {/* <MyModal>{undefined}</MyModal> */}
       <PostForm create={createPost} />
       <hr style={{ margin: "15px 0" }} />
       <PostFilter filter={filter} setFilter={setFilter} />
