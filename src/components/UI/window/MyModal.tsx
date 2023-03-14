@@ -1,16 +1,26 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import cl from "./MyModal.module.css";
 
-interface ModalProps {
-  children: any;
+interface ModalType {
+  children?: ReactNode;
+  visible: any;
+  setVisible?: any;
 }
 
-const MyModal: React.FC<ModalProps> = ({ children }) => {
+const MyModal: React.FC<ModalType> = ({ children, visible, setVisible }) => {
+  const rootClasses = [cl.myModal];
+  if (visible) {
+    rootClasses.push(cl.active);
+  }
+
   return (
-    <div className={[cl.myModal, cl.active].join(" ")}>
-      <div className={cl.myModelContent}>{children}</div>
-    </div>
+    <>
+      <div className={rootClasses.join(" ")} onClick={() => setVisible(false)}>
+        <div className={cl.myModalContent} onClick={(e) => e.stopPropagation()}>
+          {children}
+        </div>
+      </div>
+    </>
   );
 };
-
 export default MyModal;

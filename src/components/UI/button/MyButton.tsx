@@ -4,6 +4,7 @@ import classes from "./MyButton.module.css";
 interface ButtonProps {
   children: any;
   onClick: any;
+  style?: any;
 }
 
 const MyButton: React.FC<ButtonProps> = ({ children, ...props }) => {

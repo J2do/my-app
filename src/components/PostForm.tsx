@@ -3,7 +3,7 @@ import MyInput from "./UI/input/MyInput";
 import MyButton from "./UI/button/MyButton";
 import { IPost } from "../App";
 
-interface FormProps {
+export interface FormProps {
   create(post: IPost): void;
 }
 
